@@ -19,6 +19,15 @@ but with ``sudo make install`` in the last step
 ```
 pip3 install pytradfri
 ```
-
+## Install on GameSH>
+ssh to your gameshell
+```
+cd apps/launcher/Menu/GameShell
+git clone https://github.com/gabrielsson/cpi-tradfri.git
+```
 ## Properties file
 Make sure to fill out the tradfri.properties file with IP and key to your IKEA gateway
+```
+cd cpi-tradfri
+nano tradfri.properties
+```
