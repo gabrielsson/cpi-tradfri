@@ -8,6 +8,6 @@ pip3 install pygame
 install coap
 https://github.com/ggravlingen/pytradfri/blob/master/script/install-coap-client.sh
 but with 
-sudo make install
+sudo make install in the last step
 
 pip3 install pytradfri

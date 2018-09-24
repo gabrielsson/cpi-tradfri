@@ -4,6 +4,7 @@ import logging
 from LightApi import LightApi
 
 from LightButton import LightButton
+from LightController import LightController
 __author__ = "gabrielsson"
 __copyright__ = "gabrielsson"
 __license__ = "mit"
@@ -20,46 +21,20 @@ def main():
     setup_logging()
     screen = pg.display.set_mode((320,240))
     done = False
-    btns = []
     top = 25
-    current = 0
-    lightApi = LightApi()
-
-    lights = lightApi.get_all_lights()
-
-
-    for index, light in enumerate(lights):
-        top = 26
-        left = 51 * index
-        btns.append(LightButton(rect=(left,top,50,70), light=light))
-
+    lightController = LightController()
+    lightController.Init(screen)
     while not done:
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 done = True
-            if event.type == pg.KEYDOWN:
-                logging.error(event.key)
-                if event.key == pg.K_LEFT:
-                    if current == 0:
-                        current = len(btns) - 1
-                    else:
-                        current -= 1
-                if event.key == pg.K_RIGHT:
-                    if current == len(btns) - 1:
-                        current = 0
-                    else:
-                        current += 1
-                if event.key == pg.K_UP:
-                    lightApi.turn_on_light(btns[current].light)
-                if event.key == pg.K_DOWN:
-                    lightApi.turn_off_light(btns[current].light)
-                elif event.key == pg.K_ESCAPE:
-                    done = True
-        for btn in btns:
-            btn.draw(screen)
-        btns[current].toggle(screen)
+            elif event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
+                done = True  
+            if len(lightController.btns) > 0:
+                lightController.get_event(event)
         pg.display.update()
     pg.quit()
+
 def setup_logging():
     """Setup basic logging
 
