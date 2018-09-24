@@ -11,3 +11,5 @@ but with
 sudo make install in the last step
 
 pip3 install pytradfri
+
+Make sure to fill out the tradfri.properties file with IP and key to your IKEA gateway
