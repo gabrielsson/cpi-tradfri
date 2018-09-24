@@ -1,3 +1,6 @@
+# Install
+Install this either on your computer or your GameSH>
+
 ## Install pygame on python3 
 ```
 sudo apt-get update
