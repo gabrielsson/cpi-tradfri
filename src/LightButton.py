@@ -11,14 +11,13 @@ class LightButton:
  
     def draw(self, surface):
 
+        textColor = (0, 0, 0)
 
         if(self.light.reachable):
             if(self.light.light_control.lights[0].state):        
-                textColor = (0, 0, 0)
                 self.image.fill((255,255,self.light.light_control.lights[0].dimmer/2))
             else: 
                 textColor = (240, 240, 240)
-
                 self.image.fill((100,100,0))
         else: 
             self.image.fill((100,100,100))
