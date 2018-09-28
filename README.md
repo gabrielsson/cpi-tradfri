@@ -1,4 +1,4 @@
-# Install
+# ![Clock Work Pi Tradfri](cpi-tradfri.png)
 Install this either on your computer or your GameSH>
 
 ## Install pygame on python3 
