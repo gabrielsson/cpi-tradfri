@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python3 remote.py
+python3 src/remote.py
