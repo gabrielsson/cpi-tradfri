@@ -11,9 +11,9 @@ class LightController:
         self.lights = lightapi.get_all_lights()
         self.screen = screen
         for index, light in enumerate(self.lights):
-            top = 5 + (75 * (index // 4))
-            left = 75 * (index % 4) + 5
-            btn =  LightButton(rect=(left,top,70,70), light=light)
+            top = 15 + (95 * (index // 3))
+            left = 95 * (index % 3) + 15
+            btn =  LightButton(rect=(left,top,80,80), light=light)
             self.btns.append(btn)
             btn.draw(self.screen)
         
