@@ -1,6 +1,6 @@
 import pygame as pg
 
-from LightApi import LightApi
+import lightapi
 from pytradfri.device import Device
 from LightButton import LightButton
 
@@ -8,8 +8,7 @@ class LightController:
     btns = []
     current = 0
     def Init(self, screen): 
-        self.lightApi = LightApi()
-        self.lights = self.lightApi.get_all_lights()
+        self.lights = lightapi.get_all_lights()
         self.screen = screen
         for index, light in enumerate(self.lights):
             top = 5 + (75 * (index // 4))
@@ -42,9 +41,9 @@ class LightController:
                 else:
                     self.current += 1
             if event.key == pg.K_UP:
-                self.btns[self.current].light = self.lightApi.turn_on_light(self.btns[self.current].light)
+                self.btns[self.current].light = lightapi.turn_on_light(self.btns[self.current].light)
             if event.key == pg.K_DOWN:
-                self.btns[self.current].light = self.lightApi.turn_off_light(self.btns[self.current].light)
+                self.btns[self.current].light = lightapi.turn_off_light(self.btns[self.current].light)
              
             for btn in self.btns:
                 btn.draw(self.screen)

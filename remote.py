@@ -1,15 +1,15 @@
 import sys
 import pygame as pg
 import logging
-from LightApi import LightApi
 
-from LightButton import LightButton
 from LightController import LightController
 __author__ = "gabrielsson"
 __copyright__ = "gabrielsson"
 __license__ = "mit"
 
 _logger = logging.getLogger(__name__)
+pg.init()
+
 
 def main():
     """Main entry point allowing external calls
@@ -17,21 +17,20 @@ def main():
     Args:
       args ([str]): command line parameter list
     """
-    pg.init()
+
     setup_logging()
     screen = pg.display.set_mode((320,240))
-    done = False
-    top = 25
     lightController = LightController()
     lightController.Init(screen)
+    done = False
+    top = 25
     while not done:
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 done = True
             elif event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
                 done = True  
-            if len(lightController.btns) > 0:
-                lightController.get_event(event)
+            lightController.get_event(event)
         pg.display.update()
     pg.quit()
 
@@ -48,4 +47,3 @@ def setup_logging():
     
 if __name__ == '__main__':
     main()
-    #sys.exit(main())

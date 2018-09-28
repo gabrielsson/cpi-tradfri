@@ -1,15 +1,12 @@
 import pygame as pg
-from LightApi import LightApi
 from pytradfri.device import Device
 
 class LightButton:
-    lightApi = LightApi()
 
     def __init__(self, rect, light: Device):
         self.rect = pg.Rect(rect)
         self.light = light
         self.image = pg.Surface(self.rect.size).convert()
-        self.draw(self.image)
         
  
     def draw(self, surface):
