@@ -5,10 +5,6 @@ from pytradfri import Gateway
 from pytradfri.device import Device
 from pytradfri.api.libcoap_api import APIFactory
 from typing import List
-
-
-
-
   
 def api_factory():
     identity = uuid.uuid4().hex

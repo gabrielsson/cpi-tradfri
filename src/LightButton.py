@@ -17,7 +17,6 @@ class LightButton:
             if(self.light.light_control.lights[0].state):        
                 self.image.fill((255,255,self.light.light_control.lights[0].dimmer/2))
             else: 
-                textColor = (240, 240, 240)
                 self.image.fill((100,100,0))
         else: 
             self.image.fill((100,100,100))
@@ -25,13 +24,10 @@ class LightButton:
         basicFont = pg.font.SysFont(None, 16)
         text = basicFont.render(self.light.name, True, textColor)
         textRect = text.get_rect()
-        textRect.centerx = self.rect.centerx
-        textRect.centery = self.rect.centery
+        textRect.centerx = self.rect.centerx 
+        textRect.centery = self.rect.centery + self.rect.height / 2 + 10
         surface.blit(self.image, self.rect)
         lampImage = pg.image.load("skin/lamp_bg.png")
         surface.blit(lampImage.convert_alpha(), self.rect)
         surface.blit(text, textRect)
     
-    def toggle(self, surface):
-        pg.draw.line(surface, (255,255,255), 
-            [self.rect.left +2, self.rect.bottom - 3], [self.rect.right -2, self.rect.bottom - 3], 4)
