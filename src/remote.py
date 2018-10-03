@@ -10,7 +10,7 @@ __license__ = "mit"
 _logger = logging.getLogger(__name__)
 pg.init()
 clock = pg.time.Clock()
-
+roundcorners = pg.image.load("skin/roundcorners.png")
 
 def main():
     """Main entry point allowing external calls
@@ -33,10 +33,17 @@ def main():
                 done = True 
             lightController.get_event(event)
         lightController.draw_image_on_screen()
+        roundCorners(screen)
         pg.display.update()
-        clock.tick(60)
 
+        clock.tick(60)
     pg.quit()
+
+def roundCorners(screen):
+    screen.blit(roundcorners.convert_alpha(), (0,0), (0,0,10,10))
+    screen.blit(roundcorners.convert_alpha(), (screen.get_width() - 10,0), (0,10,10,10))
+    screen.blit(roundcorners.convert_alpha(), (0,screen.get_height() - 10), (0,20,10,10))
+    screen.blit(roundcorners.convert_alpha(), (screen.get_width() - 10, screen.get_height() - 10), (0,30,10,10))
 
 def setup_logging():
     """Setup basic logging
