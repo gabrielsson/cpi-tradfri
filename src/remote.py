@@ -9,6 +9,7 @@ __license__ = "mit"
 
 _logger = logging.getLogger(__name__)
 pg.init()
+clock = pg.time.Clock()
 
 
 def main():
@@ -29,9 +30,12 @@ def main():
             if event.type == pg.QUIT:
                 done = True
             elif event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
-                done = True  
+                done = True 
             lightController.get_event(event)
+        lightController.draw_image_on_screen()
         pg.display.update()
+        clock.tick(60)
+
     pg.quit()
 
 def setup_logging():
