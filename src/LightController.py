@@ -13,7 +13,9 @@ class LightController:
     def Init(self, screen):
         self.screen = screen
         self.lights = lightapi.get_all_lights()
-        self.bg_size = len(self.lights) * 100 + 40, 240
+        self.bg_size = len(self.lights) * 100 + 40, screen.get_height()
+        if self.bg_size[0] < screen.get_width():
+            self.bg_size = screen.get_width(), screen.get_height()
         self.bg_image = pg.Surface(self.bg_size)
         self.bg_image.fill(pg.Color("white"))
 

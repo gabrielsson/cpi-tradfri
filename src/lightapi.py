@@ -12,8 +12,10 @@ def api_factory():
     config = configparser.RawConfigParser()
     config.read('tradfri.properties')
     api_factory = APIFactory(host=config.get("TradfriSection", "ip"), psk_id=identity)
-
-    api_factory.generate_psk(security_key=config.get("TradfriSection","key"))
+    try:
+        api_factory.generate_psk(security_key=config.get("TradfriSection","key"))
+    except:
+        pass
     return api_factory.request
 
 api = api_factory()
@@ -21,8 +23,12 @@ gateway = Gateway()
 
 def get_all_lights():
     devices_command = gateway.get_devices()
-    devices_commands = api(devices_command)
-    devices = api(devices_commands)
+    devices = []
+    try:
+        devices_commands = api(devices_command)
+        devices = api(devices_commands)
+    except:
+        pass
     lights = [dev for dev in devices if dev.has_light_control]
     
     return lights

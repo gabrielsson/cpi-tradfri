@@ -22,10 +22,20 @@ def main():
 
     setup_logging()
     screen = pg.display.set_mode((320, 240))
+    controllerSurface = pg.Surface((320, 200))
     lightController = LightController()
-    lightController.Init(screen)
+    lightController.Init(controllerSurface)
     done = False
-    top = 25
+    header = getHeader()
+    footer = getFooter()
+    screen.blit(header, (0,0))
+    screen.blit(footer, (0,220))
+    pg.draw.line(screen,
+            pg.Color(169, 169, 169),
+            (0, screen.get_height() - 20),
+            (screen.get_width(), screen.get_height() - 20),
+            1)
+    roundCorners(screen)
     while not done:
         for event in pg.event.get():
             if event.type == pg.QUIT:
@@ -34,17 +44,24 @@ def main():
                 done = True
             lightController.get_event(event)
         lightController.draw_image_on_screen()
-        pg.draw.line(screen, 
-                pg.Color(169, 169, 169), 
-                (0, screen.get_height() - 20), 
-                (screen.get_width(), screen.get_height() - 20), 
-                1)
-
-        roundCorners(screen)
+        screen.blit(controllerSurface, (0, 20))
         pg.display.update()
-
-        clock.tick(60)
+        clock.tick(30)
     pg.quit()
+
+def getFooter():
+    footer = pg.Surface((320, 20))
+    footer.fill((255,255,255))
+    return footer
+
+def getHeader():
+    header = getFooter()
+    header.fill((120,120,120))
+    basicFont = pg.font.SysFont(None, 16)
+    textColor = (0,0,0)
+    text = basicFont.render("Cpi Trådfri", True, textColor)
+    header.blit(text, (14,4))
+    return header
 
 
 def roundCorners(screen):
