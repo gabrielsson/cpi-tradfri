@@ -1,7 +1,7 @@
 # ![Clock Work Pi Tradfri](cpi-tradfri.png)
 Install this either on your computer or your GameSH>
 
-![UI](doc/screenshot.png)
+![UI](doc/screenshot.gif)
 ## Install pygame on python3 
 ```
 sudo apt-get update
