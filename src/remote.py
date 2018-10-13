@@ -11,7 +11,8 @@ _logger = logging.getLogger(__name__)
 pg.init()
 clock = pg.time.Clock()
 roundcorners = pg.image.load("skin/roundcorners.png")
-
+footbar = pg.image.load("skin/footbar.png")
+textColor = (83,83,83)
 
 def main():
     """Main entry point allowing external calls
@@ -52,6 +53,10 @@ def main():
 def getFooter():
     footer = pg.Surface((320, 20))
     footer.fill((255,255,255))
+    footer.blit(footbar.convert_alpha(), (3,2), (0,0,18,18))
+    iconFont = pg.font.Font("skin/fonts/VarelaRound-Regular.ttf",12)
+    nav = iconFont.render("Nav.", True, textColor)
+    footer.blit(nav, (24, 3))
     return footer
 
 def getHeader():
@@ -59,7 +64,6 @@ def getHeader():
     header.fill((228,228,228))
     titleFont = pg.font.Font("skin/fonts/VarelaRound-Regular.ttf",16)
     title = "Cpi Trådfri"
-    textColor = (83,83,83)
     text = titleFont.render(title, True, textColor)
     header.blit(text, (3,2))
     return header
