@@ -55,12 +55,13 @@ def getFooter():
     return footer
 
 def getHeader():
-    header = getFooter()
-    header.fill((120,120,120))
-    basicFont = pg.font.SysFont(None, 16)
-    textColor = (0,0,0)
-    text = basicFont.render("Cpi Trådfri", True, textColor)
-    header.blit(text, (14,4))
+    header = pg.Surface((320, 20))
+    header.fill((228,228,228))
+    titleFont = pg.font.Font("skin/fonts/VarelaRound-Regular.ttf",16)
+    title = "Cpi Trådfri"
+    textColor = (83,83,83)
+    text = titleFont.render(title, True, textColor)
+    header.blit(text, (3,2))
     return header
 
 

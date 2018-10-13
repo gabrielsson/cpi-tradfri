@@ -11,7 +11,7 @@ class LightButton:
  
     def draw(self, surface):
 
-        textColor = (0, 0, 0)
+        textColor = (83,83,83)
 
         if(self.light.reachable):
             if(self.light.light_control.lights[0].state):        
@@ -21,11 +21,11 @@ class LightButton:
         else: 
             self.image.fill((100,100,100))
 
-        basicFont = pg.font.SysFont(None, 16)
+        basicFont = pg.font.Font("skin/fonts/VarelaRound-Regular.ttf",16)
         text = basicFont.render(self.light.name, True, textColor)
         textRect = text.get_rect()
         textRect.centerx = self.rect.centerx 
-        textRect.centery = self.rect.centery + self.rect.height / 2 + 10
+        textRect.centery = self.rect.centery + self.rect.height / 2 + 14
         surface.blit(self.image, self.rect)
         lampImage = pg.image.load("skin/lamp_bg.png")
         surface.blit(lampImage.convert_alpha(), self.rect)

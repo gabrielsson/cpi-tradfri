@@ -20,7 +20,7 @@ class LightController:
         self.bg_image.fill(pg.Color("white"))
 
         for index, light in enumerate(self.lights):
-            top = 75 if self.current == index else 90
+            top = 40 if self.current == index else 60
             left = 100 * index + 20
             btn = LightButton(rect=(left, top, 80, 80), light=light)
             self.btns.append(btn)
@@ -47,9 +47,9 @@ class LightController:
                     self.btns[self.current].light)
 
             for index, btn in enumerate(self.btns):
-                btn.rect.top = 90
+                btn.rect.top = 60
                 if index == self.current:
-                    btn.rect.top = 75
+                    btn.rect.top = 40
                 btn.draw(self.bg_image)
 
     def draw_image_on_screen(self):
@@ -67,7 +67,7 @@ class LightController:
 
     def mark_icon(self):
 
-        top = 69
+        top = 34
         left = 100 * self.current + 14
         rect = (left, top, 80, 80)
         self.bg_image.blit(self.selectorImage.convert_alpha(), rect)
